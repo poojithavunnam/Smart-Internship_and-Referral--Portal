@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login · InternFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="auth-shell">
+    <section class="auth-card glass-panel">
+      <div class="auth-heading">
+        <span>Welcome back</span>
+        <h1>Login to your account</h1>
+        <div class="login-tabs">
+          <button id="student-tab" class="tab-btn active" type="button">Student Login</button>
+          <button id="admin-tab" class="tab-btn" type="button">Admin Login</button>
+        </div>
+      </div>
+      
+      <!-- Student Login Form -->
+      <form id="student-login-form" class="auth-form active">
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          <span>Password</span>
+          <input type="password" name="password" required />
+        </label>
+        <button class="btn btn-primary" type="submit">Sign In as Student</button>
+      </form>
+      
+      <!-- Admin Login Form -->
+      <form id="admin-login-form" class="auth-form">
+        <label>
+          <span>Admin Email</span>
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          <span>Admin Password</span>
+          <input type="password" name="password" required />
+        </label>
+        <button class="btn btn-primary" type="submit">Sign In as Admin</button>
+      </form>
+      
+        <p class="auth-note">New to InternFlow? <a href="register.html">Create a student account</a></p>
+    </section>
+  </div>
+  <script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard · InternFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="brand-mark">SP</div>
+        <div>
+          <p>SmartPortal</p>
+          <span>Student dashboard</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="internships.html">Internships</a>
+        <a href="applications.html">Applications</a>
+        <a href="referrals.html">Referrals</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="theme-toggle" class="btn btn-ghost">Dark Mode</button>
+        <button id="logout-button" class="btn btn-ghost">Sign Out</button>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="panel-header">
+        <div>
+          <p class="eyebrow">Welcome back, Poojitha! 👋</p>
+          <h1>Your internship dashboard</h1>
+          <p class="panel-copy">Here's what's happening with your internship journey.</p>
+        </div>
+        <div class="header-actions">
+          <div class="search-group">
+            <input id="dashboard-search" type="search" placeholder="Search internships" />
+          </div>
+        </div>
+      </header>
+
+      <section class="dashboard-summary" id="dashboard-summary"></section>
+
+      <section class="dashboard-columns">
+        <div class="quick-actions-card">
+          <div class="card-heading">
+            <h2>Quick Actions</h2>
+          </div>
+          <div class="quick-actions-list">
+            <a class="quick-action" href="internships.html">Browse Internships</a>
+            <a class="quick-action" href="applications.html">View Applications</a>
+            <a class="quick-action" href="referrals.html">Request Referral</a>
+          </div>
+        </div>
+        <div class="recent-card">
+          <div class="card-heading">
+            <h2>Recent Applications</h2>
+          </div>
+          <div class="recent-empty">
+            <p>No applications yet. Start exploring internships!</p>
+            <a class="btn btn-primary" href="internships.html">Browse Internships</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="jobs-grid" id="jobs-grid"></section>
+    </main>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="script.js" defer></script>
+</body>
+</html>

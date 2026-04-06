@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Applications · InternFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="brand-mark">SP</div>
+        <div>
+          <p>SmartPortal</p>
+          <span>Application tracker</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="internships.html">Internships</a>
+        <a href="applications.html" class="active">Applications</a>
+        <a href="referrals.html">Referrals</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="logout-button" class="btn btn-ghost">Logout</button>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="panel-header">
+        <div>
+          <p class="eyebrow">Applications</p>
+          <h1>Track your active applications</h1>
+        </div>
+      </header>
+
+      <section class="list-panel" id="applications-list"></section>
+    </main>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="script.js" defer></script>
+</body>
+</html>

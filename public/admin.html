@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Smart Internship Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .applications-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #dee2e6;
+            font-weight: bold;
+        }
+
+        .application-item {
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .application-item:last-child {
+            border-bottom: none;
+        }
+
+        .applicant-info h4 {
+            margin: 0 0 5px 0;
+            color: #333;
+        }
+
+        .applicant-info p {
+            margin: 2px 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .internship-info {
+            font-weight: 500;
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-accepted { background: #d4edda; color: #155724; }
+        .status-rejected { background: #f8d7da; color: #721c24; }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-accept {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .btn-reject {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .btn-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .resume-link {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .resume-link:hover {
+            text-decoration: underline;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .application-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .action-buttons {
+                justify-content: center;
+            }
+        }
+
+        .content-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .content-tab-btn {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            background: transparent;
+            color: #666;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .content-tab-btn.active {
+            background: #667eea;
+            color: white;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .referrals-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .referral-item {
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .referral-item:last-child {
+            border-bottom: none;
+        }
+
+        .referral-applicant-info h4 {
+            margin: 0 0 5px 0;
+            color: #333;
+        }
+
+        .referral-applicant-info p {
+            margin: 2px 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>Smart Portal - Admin</h2>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Admin Dashboard</h1>
+            <p>Manage internship applications and referral requests</p>
+        </div>
+
+        <div id="errorMessage" class="error" style="display: none;"></div>
+
+        <div class="stats-grid">
+            <div class="stat-card glass-panel">
+                <div class="stat-number" id="totalApps">0</div>
+                <div>Total Applications</div>
+            </div>
+            <div class="stat-card glass-panel">
+                <div class="stat-number" id="pendingApps">0</div>
+                <div>Pending Applications</div>
+            </div>
+            <div class="stat-card glass-panel">
+                <div class="stat-number" id="totalReferrals">0</div>
+                <div>Total Referrals</div>
+            </div>
+            <div class="stat-card tilt-wrapper tilt-card glass-panel">
+                <div class="stat-number" id="pendingReferrals">0</div>
+                <div>Pending Referrals</div>
+            </div>
+        </div>
+
+        <div class="content-tabs">
+            <button id="applications-tab" class="content-tab-btn active" type="button">Applications</button>
+            <button id="referrals-tab" class="content-tab-btn" type="button">Referrals</button>
+        </div>
+
+        <!-- Applications Section -->
+        <div id="applications-section" class="content-section active">
+            <div class="applications-section">
+                <div class="section-header">All Applications</div>
+                <div id="applicationsList">
+                    <div class="loading">Loading applications...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Referrals Section -->
+        <div id="referrals-section" class="content-section">
+            <div class="referrals-section">
+                <div class="section-header">All Referrals</div>
+                <div id="referralsList">
+                    <div class="loading">Loading referrals...</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Logout Section at Bottom -->
+        <div style="text-align: center; margin-top: 40px; margin-bottom: 20px;">
+            <button id="logoutBtn" style="background-color: #dc3545; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; transition: background 0.2s ease;">
+                Logout Securely
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Admin dashboard functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                clearSession();
+                window.location.href = 'login.html';
+            });
+
+            const token = getToken();
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Check if user is admin
+            try {
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                if (payload.role !== 'admin') {
+                    showError('Access denied. Admin privileges required.');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
+                    return;
+                }
+            } catch (e) {
+                showError('Invalid token. Please login again.');
+                clearSession();
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Tab switching functionality
+            const applicationsTab = document.getElementById('applications-tab');
+            const referralsTab = document.getElementById('referrals-tab');
+            const applicationsSection = document.getElementById('applications-section');
+            const referralsSection = document.getElementById('referrals-section');
+
+            applicationsTab.addEventListener('click', () => {
+                applicationsTab.classList.add('active');
+                referralsTab.classList.remove('active');
+                applicationsSection.classList.add('active');
+                referralsSection.classList.remove('active');
+            });
+
+            referralsTab.addEventListener('click', () => {
+                referralsTab.classList.add('active');
+                applicationsTab.classList.remove('active');
+                referralsSection.classList.add('active');
+                applicationsSection.classList.remove('active');
+            });
+
+            loadApplications();
+            loadReferrals();
+        });
+
+        async function loadApplications() {
+            try {
+                const response = await fetch('/api/admin/applications', {
+                    headers: {
+                        'Authorization': `Bearer ${getToken()}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to load applications');
+                }
+
+                const data = await response.json();
+                displayApplications(data.applications);
+                // Store applications data for stats update
+                window.applicationsData = data.applications;
+                if (window.referralsData) {
+                    updateStats(window.applicationsData, window.referralsData);
+                }
+            } catch (error) {
+                console.error('Error loading applications:', error);
+                showError('Failed to load applications. Please try again.');
+            }
+        }
+
+        function displayApplications(applications) {
+            const container = document.getElementById('applicationsList');
+
+            if (applications.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 40px; color: #666;">No applications found.</div>';
+                return;
+            }
+
+            container.innerHTML = applications.map(app => `
+                <div class="application-item">
+                    <div class="applicant-info">
+                        <h4>${app.applicantName}</h4>
+                        <p><strong>Email:</strong> ${app.applicantEmail}</p>
+                        <p><strong>Mobile:</strong> ${app.applicantMobile || 'Not provided'}</p>
+                        <p><strong>LinkedIn:</strong> ${app.applicantLinkedin ? `<a href="${app.applicantLinkedin}" target="_blank">${app.applicantLinkedin}</a>` : 'Not provided'}</p>
+                        <p><strong>Resume:</strong> ${app.applicantResume ? `<a href="/uploads/${app.applicantResume}" target="_blank" class="resume-link">View Resume</a>` : 'Not uploaded'}</p>
+                        <p><strong>Skills:</strong> ${app.skills}</p>
+                        <p><strong>Cover Letter:</strong> ${app.coverLetter || 'Not provided'}</p>
+                    </div>
+                    <div class="internship-info">
+                        <strong>${app.internshipTitle}</strong><br>
+                        <span style="color: #666;">${app.company}</span>
+                    </div>
+                    <div>
+                        <span class="status-badge status-${app.status.toLowerCase()}">${app.status}</span>
+                    </div>
+                    <div class="action-buttons">
+                        ${app.status === 'pending' ? `
+                            <button class="btn-accept" onclick="updateStatus('${app.id}', 'accepted')">Accept</button>
+                            <button class="btn-reject" onclick="updateStatus('${app.id}', 'rejected')">Reject</button>
+                        ` : `
+                            <button class="btn-accept btn-disabled" disabled>Accept</button>
+                            <button class="btn-reject btn-disabled" disabled>Reject</button>
+                        `}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateStats(applications, referrals) {
+            const totalApps = applications.length;
+            const pendingApps = applications.filter(app => app.status === 'pending').length;
+
+            const totalRefs = referrals.length;
+            const pendingRefs = referrals.filter(ref => ref.status === 'pending').length;
+
+            document.getElementById('totalApps').textContent = totalApps;
+            document.getElementById('pendingApps').textContent = pendingApps;
+            document.getElementById('totalReferrals').textContent = totalRefs;
+            document.getElementById('pendingReferrals').textContent = pendingRefs;
+        }
+
+        async function updateStatus(applicationId, status) {
+            try {
+                const response = await fetch('/api/admin/applications/status', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${getToken()}`
+                    },
+                    body: JSON.stringify({
+                        applicationId,
+                        status
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to update application status');
+                }
+
+                const result = await response.json();
+                showSuccess(`Application ${status} successfully!`);
+                loadApplications(); // Reload the list
+            } catch (error) {
+                console.error('Error updating status:', error);
+                showError('Failed to update application status. Please try again.');
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        function showSuccess(message) {
+            // You can implement a success message display here
+            console.log('Success:', message);
+        }
+
+        async function loadReferrals() {
+            try {
+                const response = await fetch('/api/admin/referrals', {
+                    headers: {
+                        'Authorization': `Bearer ${getToken()}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to load referrals');
+                }
+
+                const data = await response.json();
+                displayReferrals(data.referrals);
+                // Store referrals data for stats update
+                window.referralsData = data.referrals;
+                if (window.applicationsData) {
+                    updateStats(window.applicationsData, window.referralsData);
+                }
+            } catch (error) {
+                console.error('Error loading referrals:', error);
+                showError('Failed to load referrals. Please try again.');
+            }
+        }
+
+        function displayReferrals(referrals) {
+            const container = document.getElementById('referralsList');
+
+            if (referrals.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 40px; color: #666;">No referrals found.</div>';
+                return;
+            }
+
+            container.innerHTML = referrals.map(ref => `
+                <div class="referral-item">
+                    <div class="referral-applicant-info">
+                        <h4>${ref.applicantName}</h4>
+                        <p><strong>Email:</strong> ${ref.applicantEmail}</p>
+                        <p><strong>Mobile:</strong> ${ref.applicantMobile || 'Not provided'}</p>
+                        <p><strong>LinkedIn:</strong> ${ref.applicantLinkedin ? `<a href="${ref.applicantLinkedin}" target="_blank">${ref.applicantLinkedin}</a>` : 'Not provided'}</p>
+                        <p><strong>Message:</strong> ${ref.message}</p>
+                    </div>
+                    <div>
+                        <strong>${ref.internshipTitle}</strong><br>
+                        <span style="color: #666;">${ref.company}</span>
+                    </div>
+                    <div>
+                        <span class="status-badge status-${ref.status.toLowerCase()}">${ref.status}</span>
+                        ${ref.status === 'pending' ? `
+                            <div style="margin-top: 10px;">
+                                <button class="btn-accept" onclick="updateReferralStatus('${ref.id}', 'accepted')" style="margin-right: 5px;">Accept</button>
+                                <button class="btn-reject" onclick="updateReferralStatus('${ref.id}', 'rejected')">Reject</button>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function updateReferralStatus(referralId, status) {
+            try {
+                const response = await fetch('/api/admin/referrals/status', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${getToken()}`
+                    },
+                    body: JSON.stringify({
+                        referralId,
+                        status
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to update referral status');
+                }
+
+                const result = await response.json();
+                showSuccess(`Referral ${status} successfully!`);
+                loadReferrals(); // Reload the list
+            } catch (error) {
+                console.error('Error updating referral status:', error);
+                showError('Failed to update referral status. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>

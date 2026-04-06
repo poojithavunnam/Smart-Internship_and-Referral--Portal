@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile · SmartPortal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="brand-mark">SP</div>
+        <div>
+          <p>SmartPortal</p>
+          <span>User profile</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="internships.html">Internships</a>
+        <a href="applications.html">Applications</a>
+        <a href="referrals.html">Referrals</a>
+        <a href="profile.html" class="active">Profile</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="theme-toggle" class="btn btn-ghost">Dark Mode</button>
+        <button id="logout-button" class="btn btn-ghost">Sign Out</button>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="panel-header">
+        <div>
+          <p class="eyebrow">Profile</p>
+          <h1>Personal information</h1>
+          <p class="panel-copy">Manage your account details and see your internship progress in one place.</p>
+        </div>
+      </header>
+
+      <section class="detail-form">
+        <form id="profile-form" enctype="multipart/form-data">
+          <label>
+            <span>Name</span>
+            <input type="text" id="name" readonly />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="text" id="email" readonly />
+          </label>
+          <label>
+            <span>Mobile number</span>
+            <input type="tel" id="mobile" />
+          </label>
+          <label>
+            <span>LinkedIn profile</span>
+            <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile" />
+          </label>
+          <label>
+            <span>GitHub profile</span>
+            <input type="url" id="github" placeholder="https://github.com/yourusername" />
+          </label>
+          <label>
+            <span>Resume (PDF)</span>
+            <input type="file" id="resume" name="resume" accept=".pdf" />
+            <small id="current-resume"></small>
+          </label>
+          <label>
+            <span>Experience (optional)</span>
+            <textarea id="experience" rows="3" placeholder="Describe your relevant experience..."></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit">Update Profile</button>
+        </form>
+      </section>
+    </main>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="script.js" defer></script>
+</body>
+</html>

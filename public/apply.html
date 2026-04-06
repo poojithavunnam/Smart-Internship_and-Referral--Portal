@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply · InternFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="brand-mark"><img src="ChatGPT Image Apr 2, 2026, 06_36_19 PM.png" alt="ChatGPT logo" /></div>
+        <div>
+          <p>InternFlow</p>
+          <span>Apply for internships</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html">Internships</a>
+        <a href="applications.html">Applications</a>
+        <a href="referrals.html">Referrals</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="logout-button" class="btn btn-ghost">Logout</button>
+      </div>
+    </aside>
+
+    <main class="main-panel apply-panel">
+      <header class="panel-header">
+        <div>
+          <p class="eyebrow">Apply</p>
+          <h1>Submit your application</h1>
+        </div>
+      </header>
+
+      <section class="form-section">
+        <div class="job-summary-card" id="job-summary-card"></div>
+        <form id="apply-form" class="detail-form" enctype="multipart/form-data">
+          <label>
+            <span>Name</span>
+            <input id="applicant-name" type="text" disabled />
+          </label>
+          <label>
+            <span>Email</span>
+            <input id="applicant-email" type="email" disabled />
+          </label>
+          <label>
+            <span>Skills</span>
+            <input name="skills" type="text" placeholder="JS, Node, React" required />
+          </label>
+          <label>
+            <span>LinkedIn profile</span>
+            <input name="linkedin" type="url" placeholder="https://linkedin.com/in/yourprofile" />
+          </label>
+          <label>
+            <span>Resume (PDF)</span>
+            <input name="resume" type="file" accept=".pdf" />
+          </label>
+          <label>
+            <span>Cover Letter (optional)</span>
+            <textarea name="coverLetter" rows="6" placeholder="Tell the recruiter why you're a strong fit"></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit">Send Application</button>
+        </form>
+      </section>
+    </main>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="script.js" defer></script>
+</body>
+</html>

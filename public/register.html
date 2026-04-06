@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register · InternFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="auth-shell">
+    <section class="auth-card">
+      <div class="auth-heading">
+        <span>Join InternFlow</span>
+        <h1>Create your student account</h1>
+      </div>
+      <form id="register-form" class="auth-form" enctype="multipart/form-data">
+        <label>
+          <span>Full name</span>
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          <span>Mobile number</span>
+          <input type="tel" name="mobile" />
+        </label>
+        <label>
+          <span>LinkedIn profile</span>
+          <input type="url" name="linkedin" placeholder="https://linkedin.com/in/yourprofile" />
+        </label>
+        <label>
+          <span>GitHub profile</span>
+          <input type="url" name="github" placeholder="https://github.com/yourusername" />
+        </label>
+        <label>
+          <span>Resume (PDF)</span>
+          <input type="file" name="resume" accept=".pdf" />
+        </label>
+        <label>
+          <span>Experience (optional)</span>
+          <textarea name="experience" rows="3" placeholder="Describe your relevant experience..."></textarea>
+        </label>
+        <label>
+          <span>Password</span>
+          <input type="password" name="password" required minlength="6" />
+        </label>
+        <button class="btn btn-primary" type="submit">Create account</button>
+      </form>
+      <p class="auth-note">Already registered? <a href="login.html">Sign in</a></p>
+    </section>
+  </div>
+  <script src="script.js" defer></script>
+</body>
+</html>

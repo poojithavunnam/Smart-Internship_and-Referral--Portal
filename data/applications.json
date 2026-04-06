@@ -1,0 +1,47 @@
+[
+  {
+    "id": "app_1775101939951_9094",
+    "internshipId": "job_001",
+    "internshipTitle": "Frontend Software Intern",
+    "company": "Axiom Labs",
+    "companyImage": "https://images.unsplash.com/photo-1522204509158-6c8ed0d2ee1e?auto=format&fit=crop&w=800&q=80",
+    "userId": "user_1775101587371_120",
+    "name": "Poojitha",
+    "email": "poojithavunnam@gmail.com",
+    "skills": "Python",
+    "coverLetter": "Im fit for this",
+    "status": "accepted",
+    "appliedAt": "2026-04-02T03:52:19.951Z",
+    "updatedAt": "2026-04-06T04:21:50.553Z",
+    "updatedBy": "user_1775449287513_9348"
+  },
+  {
+    "id": "app_1775391411889_5933",
+    "internshipId": "job_001",
+    "internshipTitle": "Frontend Software Intern",
+    "company": "Google",
+    "companyImage": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1000&q=80",
+    "userId": "user_1775102345066_835",
+    "name": "Poojitha",
+    "email": "admin@girlsfashion.com",
+    "skills": "Python",
+    "coverLetter": "IM interested",
+    "status": "accepted",
+    "appliedAt": "2026-04-05T12:16:51.889Z",
+    "updatedAt": "2026-04-06T05:02:13.617Z",
+    "updatedBy": "user_1775449287513_9348"
+  },
+  {
+    "id": "app_1775404545263_9954",
+    "userId": "user_1775102345066_835",
+    "internshipId": "job_001",
+    "internshipTitle": "Frontend Software Intern",
+    "company": "Google",
+    "skills": "HTML",
+    "coverLetter": "Im eligible",
+    "status": "accepted",
+    "appliedAt": "2026-04-05T15:55:45.263Z",
+    "updatedAt": "2026-04-06T05:02:15.781Z",
+    "updatedBy": "user_1775449287513_9348"
+  }
+]

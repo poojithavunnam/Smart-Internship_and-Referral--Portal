@@ -1,0 +1,26 @@
+[
+  {
+    "id": "user_1775101587371_120",
+    "name": "Poojitha",
+    "email": "poojithavunnam@gmail.com",
+    "passwordHash": "$2b$10$9PKzGDm5ESq34ab/Ujx3h.a4wtphHTwOOXrq5.UkSKTL.6Yt9vFt6",
+    "role": "student",
+    "createdAt": "2026-04-02T03:46:27.371Z"
+  },
+  {
+    "id": "user_1775102345066_835",
+    "name": "Poojitha",
+    "email": "admin@girlsfashion.com",
+    "passwordHash": "$2b$10$ehG2W5ck8.cax6aET6cpAuT1Lyfb2RP74KnUQnoihpj5J4YPgmCeq",
+    "role": "student",
+    "createdAt": "2026-04-02T03:59:05.066Z"
+  },
+  {
+    "id": "user_1775449287513_9348",
+    "name": "Admin User",
+    "email": "admin@smart-portal.com",
+    "passwordHash": "$2b$10$k9lWXCs0FklVxMy5VuuK5u9oXPUoLs6qSs5GGcg6uW1hBomVuYEqu",
+    "role": "admin",
+    "createdAt": "2026-04-06T04:21:27.513Z"
+  }
+]
