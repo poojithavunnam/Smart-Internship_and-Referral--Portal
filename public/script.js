@@ -1,5 +1,8 @@
 const TOKEN_KEY = 'smart_portal_token';
 const USER_KEY = 'smart_portal_user';
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+  ? '' 
+  : 'https://smart-internship-and-referral-portal.onrender.com';
 
 function getToken() {
   return localStorage.getItem(TOKEN_KEY);
@@ -41,7 +44,7 @@ async function fetchJson(path, options = {}) {
     headers['Authorization'] = `Bearer ${token}`;
   }
 
-  const response = await fetch(path, {
+  const response = await fetch(`${API_BASE_URL}${path}`, {
     ...options,
     headers,
     body: options.body && !(options.body instanceof FormData) ? JSON.stringify(options.body) : options.body,
