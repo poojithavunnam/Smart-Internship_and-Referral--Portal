@@ -577,6 +577,14 @@ function initRegisterPage() {
   });
 }
 
+function handleStartExploring() {
+  if (getToken()) {
+    window.location.href = 'internships.html';
+  } else {
+    window.location.href = 'login.html';
+  }
+}
+
 function routePage() {
   const path = window.location.pathname.split('/').pop() || 'index.html';
   applySavedTheme();
@@ -599,6 +607,10 @@ function routePage() {
   } else if (path === 'profile.html') {
     loadProfilePage();
   } else {
+    // Correctly handle redirection from landing page if not logged in
+    if (!getToken()) {
+      window.location.href = 'login.html';
+    }
     const homeLogin = document.querySelector('a[href="login.html"]');
     if (homeLogin) homeLogin.addEventListener('click', () => clearSession());
   }
