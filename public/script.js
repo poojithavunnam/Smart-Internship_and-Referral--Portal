@@ -581,6 +581,7 @@ function handleStartExploring() {
   if (getToken()) {
     window.location.href = 'internships.html';
   } else {
+    alert('Please sign in to view and apply for internships.');
     window.location.href = 'login.html';
   }
 }
@@ -607,10 +608,6 @@ function routePage() {
   } else if (path === 'profile.html') {
     loadProfilePage();
   } else {
-    // Correctly handle redirection from landing page if not logged in
-    if (!getToken()) {
-      window.location.href = 'login.html';
-    }
     const homeLogin = document.querySelector('a[href="login.html"]');
     if (homeLogin) homeLogin.addEventListener('click', () => clearSession());
   }
