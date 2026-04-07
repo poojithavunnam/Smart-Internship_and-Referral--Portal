@@ -546,22 +546,12 @@ function initRegisterPage() {
     event.preventDefault();
     const formData = new FormData(form);
     
-    // Convert file to base64 if present
-    const resumeFile = formData.get('resume');
-    let resumeBase64 = '';
-    if (resumeFile && resumeFile.size > 0) {
-      resumeBase64 = await fileToBase64(resumeFile);
-    }
-    
     const body = {
       name: formData.get('name'),
       email: formData.get('email'),
       password: formData.get('password'),
       mobile: formData.get('mobile'),
-      linkedin: formData.get('linkedin'),
-      github: formData.get('github'),
-      resume: resumeBase64,
-      experience: formData.get('experience'),
+      educationType: formData.get('educationType'),
     };
 
     try {

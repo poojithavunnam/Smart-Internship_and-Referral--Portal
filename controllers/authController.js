@@ -21,7 +21,7 @@ async function saveBase64File(base64Data, filename) {
 }
 
 async function register(req, res) {
-  const { name, email, password, mobile, linkedin, github, experience, resume } = req.body;
+  const { name, email, password, mobile, educationType } = req.body;
   const users = await readData('users.json');
 
   const existing = users.find(user => user.email.toLowerCase() === email.toLowerCase());
@@ -30,10 +30,6 @@ async function register(req, res) {
   }
 
   const passwordHash = await bcrypt.hash(password, saltRounds);
-  const resumeFilename = resume ? `resume-${createId()}.pdf` : '';
-  if (resume) {
-    await saveBase64File(resume, resumeFilename);
-  }
 
   const newUser = {
     id: createId(),
@@ -41,10 +37,11 @@ async function register(req, res) {
     email: email.toLowerCase().trim(),
     passwordHash,
     mobile: mobile ? mobile.trim() : '',
-    linkedin: linkedin ? linkedin.trim() : '',
-    github: github ? github.trim() : '',
-    resume: resumeFilename,
-    experience: experience ? experience.trim() : '',
+    educationType: educationType || '',
+    linkedin: '',
+    github: '',
+    resume: '',
+    experience: '',
     role: 'student', // Default role
     createdAt: new Date().toISOString()
   };

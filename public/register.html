@@ -30,20 +30,14 @@
           <input type="tel" name="mobile" />
         </label>
         <label>
-          <span>LinkedIn profile</span>
-          <input type="url" name="linkedin" placeholder="https://linkedin.com/in/yourprofile" />
-        </label>
-        <label>
-          <span>GitHub profile</span>
-          <input type="url" name="github" placeholder="https://github.com/yourusername" />
-        </label>
-        <label>
-          <span>Resume (PDF)</span>
-          <input type="file" name="resume" accept=".pdf" />
-        </label>
-        <label>
-          <span>Experience (optional)</span>
-          <textarea name="experience" rows="3" placeholder="Describe your relevant experience..."></textarea>
+          <span>Education Type</span>
+          <select name="educationType" required>
+            <option value="" disabled selected>Select your education</option>
+            <option value="High School">High School</option>
+            <option value="Undergraduate">Undergraduate (Bachelor's)</option>
+            <option value="Graduate">Graduate (Master's)</option>
+            <option value="Post-Graduate">Post-Graduate (PhD/Other)</option>
+          </select>
         </label>
         <label>
           <span>Password</span>
